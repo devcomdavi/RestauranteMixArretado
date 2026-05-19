@@ -1,0 +1,37 @@
+@url = https://norkuqtxwhelibidfkob.supabase.co/rest/v1
+@apiKey = sb_publishable_EBdzm5qIy0-_je4_b7KnjQ_FfKrZt7K
+
+### GET
+GET {{url}}/dish
+apiKey: {{apiKey}}
+Authorization: Bearer {{apiKey}}
+
+### POST
+POST {{url}}/dish
+apiKey: {{apiKey}}
+Authorization: Bearer {{apiKey}}
+Content-Type: application/json
+Prefer: return=representation
+
+{
+    "title": "Tapioca João Pessoa",
+    "description": "Tapioca recheada de frango com catupiry original",
+    "price": "R$ 29,90",
+    "picture": "www.supabase/storage/seila"
+}
+
+### DELETE
+DELETE {{url}}/dish?id=eq.1
+apiKey: {{apiKey}}
+Authorization: Bearer {{apiKey}}
+
+### PATCH
+PATCH {{url}}/dish?id=eq.1
+apiKey: {{apiKey}}
+Authorization: Bearer {{apiKey}}
+Content-Type: application/json
+Prefer: return=representation
+
+{
+    "price": "28,90"
+}
