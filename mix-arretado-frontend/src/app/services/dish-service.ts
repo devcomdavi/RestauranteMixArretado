@@ -1,6 +1,8 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
+import { Dish } from '../models/dish.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +13,7 @@ export class DishService {
   private apiKey = environment.supabase.apiKey;
 
   constructor() {
-    return this.load();
+    this.load();
   }
   
   private get headers() {
@@ -23,8 +25,8 @@ export class DishService {
     };
   }
 
-  public load(): Observable<Dish[] | null> {
-      return this.api.get(`${this.apiUrl}/dish`, {
+  public load(): void {
+      this.api.get<Dish[]>(`${this.apiUrl}/dish`, { // Tipa o .get
         headers: this.headers
       }).subscribe({
         next: (dishes) => {
@@ -32,7 +34,7 @@ export class DishService {
           this._dishes.set(dishes);
         }
       });
-    }    
+  }
 
   private _dishes = signal<Dish[] | null>([
 
@@ -48,8 +50,10 @@ export class DishService {
     this.api.post(`${this.apiUrl}/dish`, newDish, {
       headers: this.headers
     }).subscribe({
-      next: (dish) = console.log(dish);
-      this._dishes.set( [...this._dishes() ?? [], newDish] );
+      next: (dish) => {
+        console.log(dish);
+        this._dishes.set( [...this._dishes() ?? [], newDish] );
+      }
     });
   }
 
@@ -67,7 +71,7 @@ export class DishService {
     this.api.delete(`${this.apiUrl}/dish?id=eq.${id}`, {
       headers: this.headers
     }).subscribe({
-      next: (dish) = console.log(dish);
+      next: (dish) => console.log(dish),
     });
   }
 }

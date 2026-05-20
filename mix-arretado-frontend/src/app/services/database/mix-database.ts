@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-
+import { DishService } from '../dish-service';
 import { environment } from '../../../environments/environment';
-
+import { Dish } from '../../models/dish.model';
 @Injectable({
   providedIn: 'root',
 })
@@ -22,7 +22,7 @@ export class MixDatabase {
   }
 
   public read(): Observable<Dish[] | null> {
-    return this.api.get(`${this.apiUrl}/dish`, {
+    return this.api.get<Dish[]>(`${this.apiUrl}/dish`, {
       headers: this.headers
     });
   }
