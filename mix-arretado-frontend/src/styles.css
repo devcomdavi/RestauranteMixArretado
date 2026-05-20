@@ -1,3 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+@layer base {
+  @font-face {
+  font-family: 'Xilosa';
+  src: url('../assets/fonts/xilosa_.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Titillium Web';
+  src: url('../assets/fonts/TITILLIUMWEB-REGULAR.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+}
