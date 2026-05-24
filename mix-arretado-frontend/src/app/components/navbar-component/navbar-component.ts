@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
+import { ReservationStateService } from '../../services/reservation-state.service';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -9,9 +10,14 @@ import { RouterLink } from '@angular/router';
   styleUrl: './navbar-component.css',
 })
 export class NavbarComponent {
+  private reservationState = inject(ReservationStateService);
   public openMenu = signal(false);
 
   toggleMenu() {
     this.openMenu.update(valorAtual => !valorAtual);
+  }
+
+  toggleForm() {
+    this.reservationState.toggleForm();
   }
 }
