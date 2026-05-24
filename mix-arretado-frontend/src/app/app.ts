@@ -7,7 +7,7 @@ import { ReservationFormComponent } from './components/reservation-form-componen
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent, FooterComponent, HomepageComponent, ReservationFormComponent],
+  imports: [NavbarComponent, FooterComponent, HomepageComponent, ReservationFormComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
