@@ -11,9 +11,11 @@
         Viaje pelas cores, aromas e tradições do Nordeste sem sair do lugar. Receitas de família passadas de geração em geração com muito afeto e manteiga de garrafa.
       </p>
       <div class="flex flex-wrap gap-4">
-        <button class="px-8 py-4 bg-nordeste-orange text-white font-bold rounded-full hover:bg-orange-600 transition-colors shadow-lg shadow-orange-900/20">
-          Ver Cardápio <span class="ml-2">→</span>
-        </button>
+        <a routerLink="/cardapio">
+          <button class="cursor-pointer px-8 py-4 bg-nordeste-orange text-white font-bold rounded-full hover:bg-orange-600 transition-colors shadow-lg shadow-orange-900/20">
+            Ver Cardápio <span class="ml-2">→</span>
+          </button>
+        </a>
       </div>
     </div>
     
@@ -30,7 +32,7 @@
   </section>
 
   <!-- History Preview Section -->
-  <section class="bg-nordeste-brown text-white py-20 px-6 md:px-20 text-center relative overflow-hidden">
+  <section id="sobre" class="bg-nordeste-brown text-white py-20 px-6 md:px-20 text-center relative overflow-hidden">
 
     <div class="max-w-4xl mx-auto relative z-10">
       <div class="flex justify-center mb-6">
@@ -40,14 +42,14 @@
       <p class="text-lg md:text-xl text-nordeste-bg mb-12 leading-relaxed">
         Nascido da saudade da terra seca molhada pela chuva e do cheiro do café coado no pano, o <span class="text-nordeste-yellow font-bold">Mix Arretado</span> é mais que um restaurante: é um pedaço do Nordeste. Nossas panelas de barro contam histórias de avós, tias e vaqueiros. Trazemos o autêntico queijo coalho assado, a macaxeira derretendo na boca e a carne de sol serenada no tempo certo. Venha se achegar!
       </p>
-      <button class="px-10 py-4 bg-nordeste-orange text-white font-bold rounded-full hover:bg-orange-600 transition-colors inline-flex items-center gap-2">
+      <button class="cursor-pointer px-10 py-4 bg-nordeste-orange text-white font-bold rounded-full hover:bg-orange-600 transition-colors inline-flex items-center gap-2">
         Conheça Nossa História <span>→</span>
       </button>
     </div>
   </section>
 
   <!-- Featured Dishes Section -->
-  <section class="py-24 px-6 md:px-20">
+  <section id="destaques" class="py-24 px-6 md:px-20">
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-xilosa mb-4">As Estrelas do Cangaço</h2>
       <p class="text-nordeste-orange font-medium italic">Pratos que são poesia para o paladar</p>
@@ -71,14 +73,14 @@
     </div>
 
     <div class="flex justify-center">
-      <button routerLink="/cardapio" class="px-8 py-3 bg-nordeste-yellow text-nordeste-brown font-bold rounded-full hover:bg-yellow-500 transition-colors shadow-md">
+      <button routerLink="/cardapio" class="cursor-pointer px-8 py-3 bg-nordeste-yellow text-nordeste-brown font-bold rounded-full hover:bg-yellow-500 transition-colors shadow-md">
         Ver Cardápio Completo
       </button>
     </div>
   </section>
 
   <!-- Testimonials Section -->
-  <section class="bg-nordeste-bg py-24 px-6 md:px-20 border-y border-orange-100">
+  <section id="avaliacao" class="bg-nordeste-bg py-24 px-6 md:px-20 border-y border-orange-100">
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-xilosa mb-4">O que o povo fala da gente</h2>
     </div>
