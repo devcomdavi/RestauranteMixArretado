@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 interface Dish {
   name: string;
@@ -17,7 +18,7 @@ interface Testimonial {
 @Component({
   selector: 'app-homepage-component',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './homepage-component.html',
   styleUrl: './homepage-component.css',
 })

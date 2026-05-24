@@ -1,1 +1,35 @@
-<p>menu-component works!</p>
+<section class="bg-nordeste-bg min-h-screen py-12 px-6 md:px-20 font-titillium text-nordeste-brown">
+    <div class="max-w-7xl mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-16">
+        <h2 class="text-5xl md:text-6xl font-xilosa mb-4 text-nordeste-brown">Nosso Cardápio</h2>
+        <div class="w-24 h-1 bg-nordeste-orange mx-auto mb-6"></div>
+        <p class="text-lg text-nordeste-brown/80 max-w-2xl mx-auto italic">
+          O melhor do Nordeste preparado com carinho e tradição. Escolha sua categoria favorita e bom apetite!
+        </p>
+      </div>
+  
+      <!-- Filter -->
+      <app-filter-menu-component 
+        [categories]="categories()" 
+        (categorySelected)="onCategoryChange($event)">
+      </app-filter-menu-component>
+  
+      <!-- Dishes Grid -->
+      <div *ngIf="filteredDishes().length > 0; else noDishes" 
+           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-12">
+        <div *ngFor="let dish of filteredDishes()">
+          <app-dish-menu-component [dish]="dish"></app-dish-menu-component>
+        </div>
+      </div>
+  
+      <!-- Empty State -->
+      <ng-template #noDishes>
+        <div class="text-center py-24 bg-white/50 rounded-3xl border-2 border-dashed border-nordeste-orange/20">
+          <span class="text-6xl mb-6 block">🌵</span>
+          <h3 class="text-2xl font-xilosa text-nordeste-brown">Vixe! Nenhum prato encontrado por aqui.</h3>
+          <p class="mt-2 text-nordeste-brown/60">Tente selecionar outra categoria ou volte mais tarde.</p>
+        </div>
+      </ng-template>
+    </div>
+  </section>

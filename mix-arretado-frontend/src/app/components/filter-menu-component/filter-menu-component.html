@@ -1,1 +1,22 @@
-<p>filter-menu-component works!</p>
+<div class="flex flex-wrap justify-center gap-4 py-8">
+    <button 
+      (click)="selectCategory('Todos')"
+      [class.bg-nordeste-orange]="activeCategory() === 'Todos'"
+      [class.text-white]="activeCategory() === 'Todos'"
+      [class.bg-white]="activeCategory() !== 'Todos'"
+      [class.text-nordeste-brown]="activeCategory() !== 'Todos'"
+      class="px-6 py-2 rounded-full font-bold border-2 border-nordeste-orange transition-all hover:scale-105 shadow-sm font-titillium">
+      Todos
+    </button>
+  
+    <button 
+      *ngFor="let category of categories()"
+      (click)="selectCategory(category)"
+      [class.bg-nordeste-orange]="activeCategory() === category"
+      [class.text-white]="activeCategory() === category"
+      [class.bg-white]="activeCategory() !== category"
+      [class.text-nordeste-brown]="activeCategory() !== category"
+      class="px-6 py-2 rounded-full font-bold border-2 border-nordeste-orange transition-all hover:scale-105 shadow-sm font-titillium">
+      {{ category }}
+    </button>
+  </div>
