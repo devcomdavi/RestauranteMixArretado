@@ -1,36 +1,36 @@
 <header class="relative bg-nordeste-brown text-nordeste-bg shadow-lg py-3">
-      <div class="container mx-auto px-6 flex justify-between items-center">
-        <a href="#"><img src="images/logo-mix-v-02.png" alt="logo-mix" class="h-20 md:h-24 w-auto transition-all duration-300" ></a>
-        <nav class="hidden md:flex gap-8 font-medium font-titillium">
-          <a href="#sobre" class="hover:text-nordeste-yellow transition-colors">Nossa Raiz</a>
-          <a href="#cardapio" class="hover:text-nordeste-yellow transition-colors">Destaques</a>
-          <a href="#cardapio" class="hover:text-nordeste-yellow transition-colors">Cardápio</a>
-          <a href="#depoimentos" class="hover:text-nordeste-yellow transition-colors">O que dizem</a>
-          <a href="#contato" class="hover:text-nordeste-yellow transition-colors">Contato</a>
-        </nav>
-        <button class="hidden md:block bg-nordeste-orange text-white hover:bg-orange-600 px-6 py-2 rounded-full font-bold transition-transform hover:scale-105 font-titillium">
-          Fazer Reserva
-        </button>
-        <button (click)="toggleMenu()" class="px-6 py-2 cursor-pointer md:hidden">
-          <span class="grayscale">{{ openMenu() ? '✕' : '☰'}}</span>
-        </button>
-      </div>
-      <div class="flex flex-col px-6 py-4 gap-4 bg-nordeste-brown absolute left-0 right-0 top-full transition-all duration-300 ease-in-out md:hidden"
-      [class.opacity-0]="!openMenu()"
-      [class.pointer-events-none]="!openMenu()"
-      [class.-translate-y-4]="!openMenu()"
-      [class.opacity-100]="openMenu()"
-      [class.translate-y-0]="openMenu()"
-      [class.pointer-events-auto]="openMenu()">
-        <nav class="flex flex-col gap-8 font-medium text-center font-titillium">
-          <a href="#sobre" class="hover:text-nordeste-yellow transition-colors">Nossa Raiz</a>
-          <a href="#cardapio" class="hover:text-nordeste-yellow transition-colors">Destaques</a>
-          <a href="#cardapio" class="hover:text-nordeste-yellow transition-colors">Cardápio</a>
-          <a href="#depoimentos" class="hover:text-nordeste-yellow transition-colors">O que dizem</a>
-          <a href="#contato" class="hover:text-nordeste-yellow transition-colors">Contato</a>
-        </nav>
-        <button class="bg-nordeste-orange text-white hover:bg-orange-600 px-6 py-2 rounded-full font-bold transition-transform hover:scale-105 font-titillium">
-          Fazer Reserva
-        </button>
-      </div>
+  <div class="container mx-auto px-6 flex justify-between items-center">
+    <a routerLink="/"><img src="images/logo-mix-v-02.png" alt="logo-mix" class="h-20 md:h-24 w-auto transition-all duration-300" ></a>
+    <nav class="hidden md:flex gap-8 font-medium font-titillium">
+      <a routerLink="/" class="hover:text-nordeste-yellow transition-colors">Nossa Raiz</a>
+      <a routerLink="/" fragment="cardapio" class="hover:text-nordeste-yellow transition-colors">Destaques</a>
+      <a routerLink="/cardapio" class="hover:text-nordeste-yellow transition-colors font-bold text-nordeste-yellow">Cardápio</a>
+      <a routerLink="/" fragment="depoimentos" class="hover:text-nordeste-yellow transition-colors">O que dizem</a>
+      <a routerLink="/" fragment="contato" class="hover:text-nordeste-yellow transition-colors">Contato</a>
+    </nav>
+    <button class="hidden md:block bg-nordeste-orange text-white hover:bg-orange-600 px-6 py-2 rounded-full font-bold transition-transform hover:scale-105 font-titillium">
+      Fazer Reserva
+    </button>
+    <button (click)="toggleMenu()" class="px-6 py-2 cursor-pointer md:hidden">
+      <span class="grayscale">{{ openMenu() ? '✕' : '☰'}}</span>
+    </button>
+  </div>
+  <div class="flex flex-col px-6 py-4 gap-4 bg-nordeste-brown absolute left-0 right-0 top-full transition-all duration-300 ease-in-out md:hidden"
+  [class.opacity-0]="!openMenu()"
+  [class.pointer-events-none]="!openMenu()"
+  [class.-translate-y-4]="!openMenu()"
+  [class.opacity-100]="openMenu()"
+  [class.translate-y-0]="openMenu()"
+  [class.pointer-events-auto]="openMenu()">
+    <nav class="flex flex-col gap-8 font-medium text-center font-titillium">
+      <a routerLink="/" (click)="toggleMenu()" class="hover:text-nordeste-yellow transition-colors">Nossa Raiz</a>
+      <a routerLink="/" fragment="cardapio" (click)="toggleMenu()" class="hover:text-nordeste-yellow transition-colors">Destaques</a>
+      <a routerLink="/cardapio" (click)="toggleMenu()" class="hover:text-nordeste-yellow transition-colors font-bold text-nordeste-yellow">Cardápio</a>
+      <a routerLink="/" fragment="depoimentos" (click)="toggleMenu()" class="hover:text-nordeste-yellow transition-colors">O que dizem</a>
+      <a routerLink="/" fragment="contato" (click)="toggleMenu()" class="hover:text-nordeste-yellow transition-colors">Contato</a>
+    </nav>
+    <button class="bg-nordeste-orange text-white hover:bg-orange-600 px-6 py-2 rounded-full font-bold transition-transform hover:scale-105 font-titillium">
+      Fazer Reserva
+    </button>
+  </div>
 </header>
