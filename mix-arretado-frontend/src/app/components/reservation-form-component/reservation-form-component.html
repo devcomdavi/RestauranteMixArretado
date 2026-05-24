@@ -1,0 +1,42 @@
+<div (click)="toggleForm()" class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      [class.opacity-0]="!openForm()"
+      [class.pointer-events-none]="!openForm()"
+      [class.-translate-y-4]="!openForm()">
+    <div (click)="$event.stopPropagation()" class="bg-[#FFF8E1] w-full max-w-md rounded-2xl shadow-2xl overflow-hidden relative animate-in fade-in zoom-in duration-200 font-titillium">
+        <button (click)="toggleForm()" class="absolute top-4 right-4 text-[#3E2723] hover:text-[#E65100]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x" aria-hidden="true">
+                <path d="M18 6 6 18"></path><path d="m6 6 12 12"></path>
+            </svg>
+        </button>
+        <div class="bg-[#3E2723] p-6 text-center">
+            <h3 class="text-2xl font-bold text-[#FFB300] font-xilosa">Faça sua Reserva</h3>
+            <p class="text-[#D7CCC8] text-sm mt-2">Garanta seu lugar no melhor da culinária nordestina.</p>
+        </div>
+        <form class="p-6 space-y-4">
+            <div>
+                <label class="block text-sm font-bold text-[#3E2723] mb-1">Nome Completo</label>
+                <input required="" class="w-full px-4 py-2 rounded-lg border border-[#D7CCC8] bg-white text-[#3E2723] focus:outline-none focus:ring-2 focus:ring-[#E65100]" placeholder="Seu nome" type="text"></div>
+                <div class="grid grid-cols-2 gap-4"><div>
+                    <label class="block text-sm font-bold text-[#3E2723] mb-1">Data</label>
+                    <input required="" class="w-full px-4 py-2 rounded-lg border border-[#D7CCC8] bg-white text-[#3E2723] focus:outline-none focus:ring-2 focus:ring-[#E65100]" type="date"></div>
+                    <div>
+                        <label class="block text-sm font-bold text-[#3E2723] mb-1">Horário</label>
+                        <input required="" class="w-full px-4 py-2 rounded-lg border border-[#D7CCC8] bg-white text-[#3E2723] focus:outline-none focus:ring-2 focus:ring-[#E65100]" type="time">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-[#3E2723] mb-1">Número de Pessoas</label>
+                    <select class="w-full px-4 py-2 rounded-lg border border-[#D7CCC8] bg-white text-[#3E2723] focus:outline-none focus:ring-2 focus:ring-[#E65100]">
+                        <option>2 Pessoas</option>
+                        <option>3 a 4 Pessoas</option>
+                        <option>5 a 8 Pessoas</option>
+                        <option>Mais de 8 Pessoas</option>
+                    </select>
+                </div>
+                <div class="flex gap-3 mt-4">
+                    <button (click)="toggleForm()" type="button" class="w-1/3 py-3 bg-transparent border-2 border-[#E65100] text-[#E65100] font-bold rounded-lg hover:bg-[#E65100] hover:text-white transition-colors">Cancelar</button>
+                    <button (click)="toggleForm()" type="submit" class="w-2/3 py-3 bg-[#E65100] text-white font-bold rounded-lg hover:bg-[#D84315] transition-colors shadow-md">Confirmar</button>
+                </div>
+            </form>
+        </div>
+    </div>
