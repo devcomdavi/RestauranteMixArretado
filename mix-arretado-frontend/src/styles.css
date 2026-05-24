@@ -1,19 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
-
 @import 'tailwindcss';
+
+@theme {
+  --color-nordeste-orange: #f15a24;
+  --color-nordeste-yellow: #ffcb05;
+  --color-nordeste-brown: #5d3f2e;
+  --color-nordeste-bg: #fffbf2;
+
+  --font-xilosa: "Xilosa", sans-serif;
+  --font-titillium: "Titillium Web", sans-serif;
+}
 
 @layer base {
   @font-face {
-  font-family: 'Xilosa';
-  src: url('../public/fonts/xilosa_.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
+    font-family: 'Xilosa';
+    src: url('/fonts/xilosa_.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
 
-@font-face {
-  font-family: 'Titillium Web';
-  src: url('../public/fonts/TITILLIUMWEB-REGULAR.TTF') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
+  @font-face {
+    font-family: 'Titillium Web';
+    src: url('/fonts/TITILLIUMWEB-REGULAR.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
 }

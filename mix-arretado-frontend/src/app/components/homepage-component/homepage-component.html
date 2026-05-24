@@ -1,1 +1,102 @@
-<p>homepage-component works!</p>
+<main class="bg-nordeste-bg min-h-screen font-titillium text-nordeste-brown">
+  <!-- Hero Section -->
+  <section class="relative px-6 py-12 md:px-20 md:py-24 flex flex-col md:flex-row items-center justify-between gap-12 overflow-hidden">
+    <div class="max-w-2xl z-10">
+      <h1 class="text-5xl md:text-7xl font-xilosa leading-tight mb-6 text-nordeste-brown">
+        O Verdadeiro <br/>
+        <span class="text-nordeste-orange">Sabor do Sertão</span> <br/>
+        na Sua Mesa.
+      </h1>
+      <p class="text-lg md:text-xl text-nordeste-brown mb-10 leading-relaxed max-w-lg">
+        Viaje pelas cores, aromas e tradições do Nordeste sem sair do lugar. Receitas de família passadas de geração em geração com muito afeto e manteiga de garrafa.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <button class="px-8 py-4 bg-nordeste-orange text-white font-bold rounded-full hover:bg-orange-600 transition-colors shadow-lg shadow-orange-900/20">
+          Ver Cardápio <span class="ml-2">→</span>
+        </button>
+        <button class="px-8 py-4 border-2 border-nordeste-brown text-nordeste-brown font-bold rounded-full hover:bg-nordeste-brown hover:text-white transition-all">
+          Garantir Minha Mesa
+        </button>
+      </div>
+    </div>
+    
+    <div class="relative w-full md:w-1/2 flex justify-center items-center">
+      <!-- Decorative background blur/shape -->
+      <div class="absolute -top-20 -right-20 w-96 h-96 bg-nordeste-orange opacity-10 blur-3xl rounded-full"></div>
+      
+      <div class="relative z-10">
+        <img src="images/rubacao.jpg" 
+             alt="Prato típico nordestino" 
+             class="rounded-3xl shadow-2xl border-8 border-white transform rotate-3 hover:rotate-0 transition-transform duration-500 w-full max-w-md shadow-[20px_20px_0px_0px_rgba(230,81,0,0.1)]">
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- History Preview Section -->
+  <section class="bg-nordeste-brown text-white py-20 px-6 md:px-20 text-center relative overflow-hidden">
+
+    <div class="max-w-4xl mx-auto relative z-10">
+      <div class="flex justify-center mb-6">
+        <span class="text-3xl">☀️</span>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-xilosa mb-8">Nossa Raiz, Nossa História</h2>
+      <p class="text-lg md:text-xl text-nordeste-bg mb-12 leading-relaxed">
+        Nascido da saudade da terra seca molhada pela chuva e do cheiro do café coado no pano, o <span class="text-nordeste-yellow font-bold">Mix Arretado</span> é mais que um restaurante: é um pedaço do Nordeste. Nossas panelas de barro contam histórias de avós, tias e vaqueiros. Trazemos o autêntico queijo coalho assado, a macaxeira derretendo na boca e a carne de sol serenada no tempo certo. Venha se achegar!
+      </p>
+      <button class="px-10 py-4 bg-nordeste-orange text-white font-bold rounded-full hover:bg-orange-600 transition-colors inline-flex items-center gap-2">
+        Conheça Nossa História <span>→</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Featured Dishes Section -->
+  <section class="py-24 px-6 md:px-20">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-xilosa mb-4">As Estrelas do Cangaço</h2>
+      <p class="text-nordeste-orange font-medium italic">Pratos que são poesia para o paladar</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+      <div *ngFor="let dish of featuredDishes" class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all group border border-orange-50">
+        <div class="relative h-48 overflow-hidden">
+          <img [src]="dish.imageUrl" [alt]="dish.name" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-nordeste-orange shadow-sm">
+            {{ dish.price }}
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-2 group-hover:text-nordeste-orange transition-colors">{{ dish.name }}</h3>
+          <p class="text-sm text-nordeste-brown leading-relaxed">
+            {{ dish.description }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-center">
+      <button class="px-8 py-3 bg-nordeste-yellow text-nordeste-brown font-bold rounded-full hover:bg-yellow-500 transition-colors shadow-md">
+        Ver Cardápio Completo
+      </button>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="bg-nordeste-bg py-24 px-6 md:px-20 border-y border-orange-100">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-xilosa mb-4">O que o povo fala da gente</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div *ngFor="let t of testimonials" class="bg-white p-8 rounded-3xl shadow-sm border border-orange-50 relative">
+        <div class="text-nordeste-yellow flex gap-1 mb-4 text-lg">
+          {{ getStars(t.stars) }}
+        </div>
+        <p class="italic text-nordeste-brown mb-6 leading-relaxed">
+          "{{ t.text }}"
+        </p>
+        <div class="font-bold text-nordeste-orange">— {{ t.author }}</div>
+      </div>
+    </div>
+  </section>
+</main>
