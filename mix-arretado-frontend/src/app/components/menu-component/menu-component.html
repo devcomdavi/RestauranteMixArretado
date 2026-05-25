@@ -9,16 +9,13 @@
         </p>
       </div>
   
-      <!-- Filter -->
       <app-filter-menu-component 
         [categories]="categories()" 
         (categorySelected)="onCategoryChange($event)">
       </app-filter-menu-component>
 
-      <!-- Add Dish Form -->
       <app-add-dish-component></app-add-dish-component>
 
-      <!-- Dishes Grid -->
       <div *ngIf="filteredDishes().length > 0; else noDishes" 
            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-12">
         <div *ngFor="let dish of filteredDishes()">
@@ -26,7 +23,6 @@
         </div>
       </div>
   
-      <!-- Empty State -->
       <ng-template #noDishes>
         <div class="text-center py-24 bg-white/50 rounded-3xl border-2 border-dashed border-nordeste-orange/20">
           <span class="text-6xl mb-6 block">🌵</span>
