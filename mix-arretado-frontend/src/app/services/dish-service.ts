@@ -26,19 +26,16 @@ export class DishService {
   }
 
   public load(): void {
-      this.api.get<Dish[]>(`${this.apiUrl}/dish`, { // Tipa o .get
+      this.api.get<Dish[]>(`${this.apiUrl}/dish`, {
         headers: this.headers
       }).subscribe({
         next: (dishes) => {
-          console.log(dishes)
           this._dishes.set(dishes);
         }
       });
   }
 
-  private _dishes = signal<Dish[] | null>([
-
-  ]);
+  private _dishes = signal<Dish[] | null>([]);
 
   get dishes() {
     return this._dishes.asReadonly();
@@ -49,15 +46,11 @@ export class DishService {
       headers: this.headers
     }).subscribe({
       next: (response) => {
-        console.log(response);
-        // Pega o prato criado que o banco de dados devolveu na resposta
         const createdDish = Array.isArray(response) ? response[0] : response;
         
-        // Verifica se a resposta veio completinha com o ID gerado pelo banco
         if (createdDish && createdDish.id !== undefined) {
            this._dishes.set( [...this._dishes() ?? [], createdDish] );
         } else {
-           // Por segurança, força um recarregamento total direto do banco se faltar algo
            this.load();
         }
       }
@@ -66,19 +59,13 @@ export class DishService {
 
   public removeById(id: number) {
     const filteredDishes = this._dishes()?.filter(
-      elem => {
-        console.log(`${elem.id} === ${id}`);
-        if (elem.id === id) return false;
-        return true;
-      }
+      elem => elem.id !== id
     );
 
     this._dishes.set(filteredDishes ?? null);
 
     this.api.delete(`${this.apiUrl}/dish?id=eq.${id}`, {
       headers: this.headers
-    }).subscribe({
-      next: (dish) => console.log(dish),
-    });
+    }).subscribe();
   }
 }

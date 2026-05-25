@@ -1,4 +1,4 @@
-<header class="relative bg-nordeste-brown text-nordeste-bg shadow-lg py-3">
+<header class="sticky top-0 z-50 bg-nordeste-brown text-nordeste-bg shadow-lg py-3">
   <div class="container mx-auto px-6 flex justify-between items-center">
     <a routerLink="/"><img src="images/logo-mix-v-02.png" alt="logo-mix" class="h-20 md:h-24 w-auto transition-all duration-300" ></a>
     <nav class="hidden md:flex gap-8 font-medium font-titillium">
@@ -15,7 +15,7 @@
       <span class="grayscale">{{ openMenu() ? '✕' : '☰'}}</span>
     </button>
   </div>
-  <div class="flex flex-col px-6 py-4 gap-4 bg-nordeste-brown absolute left-0 right-0 top-full transition-all duration-300 ease-in-out md:hidden"
+  <div class="flex flex-col px-6 py-4 gap-4 bg-nordeste-brown absolute left-0 right-0 top-full transition-all duration-300 ease-in-out md:hidden z-50"
   [class.opacity-0]="!openMenu()"
   [class.pointer-events-none]="!openMenu()"
   [class.-translate-y-4]="!openMenu()"
