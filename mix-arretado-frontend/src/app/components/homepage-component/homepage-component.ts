@@ -1,13 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-
-interface Dish {
-  name: string;
-  price: string;
-  description: string;
-  imageUrl: string;
-}
+import { DishService } from '../../services/dish-service';
+import { Dish } from '../../models/dish.model';
 
 interface Testimonial {
   author: string;
@@ -23,32 +18,16 @@ interface Testimonial {
   styleUrl: './homepage-component.css',
 })
 export class HomepageComponent {
-  featuredDishes: Dish[] = [
-    {
-      name: 'Baião de Dois Arretado',
-      price: 'R$ 58,00',
-      description: 'Mistura perfeita de arroz, feijão de corda, queijo coalho, carne seca, bacon e coentro fresco.',
-      imageUrl: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
-    },
-    {
-      name: 'Carne de Sol com Macaxeira',
-      price: 'R$ 65,00',
-      description: 'Nossa tradicional carne de sol curada na casa, servida com macaxeira frita crocante e manteiga de garrafa.',
-      imageUrl: 'https://images.unsplash.com/photo-1603360946369-dc9bb0258143?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
-    },
-    {
-      name: 'Moqueca de Peixe e Camarão',
-      price: 'R$ 120,00',
-      description: 'Peixe fresco do litoral, camarões graúdos, cozidos no azeite de dendê, leite de coco, pimentões e coentro.',
-      imageUrl: 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
-    },
-    {
-      name: 'Cartola Clássica',
-      price: 'R$ 28,00',
-      description: 'A sobremesa pernambucana perfeita: banana frita, queijo manteiga derretido, açúcar e canela em pó.',
-      imageUrl: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
-    }
-  ];
+  private dishService = inject(DishService);
+
+  featuredDishes = computed(() => {
+    const dishes = this.dishService.dishes() || [];
+    const selectedDishes: number[] = [2, 3, 4, 5];
+    const featuredDishes: Dish[] = selectedDishes
+      .map(id => dishes.find(dish => dish.id === id))
+      .filter((dish): dish is Dish => !!dish);
+    return featuredDishes;
+  });
 
   testimonials: Testimonial[] = [
     {
