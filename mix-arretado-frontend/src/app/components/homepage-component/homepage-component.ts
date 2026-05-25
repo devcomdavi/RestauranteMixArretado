@@ -22,7 +22,7 @@ export class HomepageComponent {
 
   featuredDishes = computed(() => {
     const dishes = this.dishService.dishes() || [];
-    const selectedDishes: number[] = [2, 3, 4, 5];
+    const selectedDishes: number[] = [3, 26, 39, 88];
     const featuredDishes: Dish[] = selectedDishes
       .map(id => dishes.find(dish => dish.id === id))
       .filter((dish): dish is Dish => !!dish);
