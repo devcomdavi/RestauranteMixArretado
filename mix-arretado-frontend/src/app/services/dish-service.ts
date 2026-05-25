@@ -45,14 +45,21 @@ export class DishService {
   }
 
   public create(newDish: Dish) {
-    // this._dishes.set( [...this._dishes() ?? [], newDish] );
-
-    this.api.post(`${this.apiUrl}/dish`, newDish, {
+    this.api.post<Dish[]>(`${this.apiUrl}/dish`, newDish, {
       headers: this.headers
     }).subscribe({
-      next: (dish) => {
-        console.log(dish);
-        this._dishes.set( [...this._dishes() ?? [], newDish] );
+      next: (response) => {
+        console.log(response);
+        // Pega o prato criado que o banco de dados devolveu na resposta
+        const createdDish = Array.isArray(response) ? response[0] : response;
+        
+        // Verifica se a resposta veio completinha com o ID gerado pelo banco
+        if (createdDish && createdDish.id !== undefined) {
+           this._dishes.set( [...this._dishes() ?? [], createdDish] );
+        } else {
+           // Por segurança, força um recarregamento total direto do banco se faltar algo
+           this.load();
+        }
       }
     });
   }
