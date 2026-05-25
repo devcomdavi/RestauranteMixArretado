@@ -1,5 +1,6 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, input, output, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AddFormStateService } from '../../services/add-form-state.service';
 
 @Component({
   selector: 'app-filter-menu-component',
@@ -9,6 +10,12 @@ import { CommonModule } from '@angular/common';
   styleUrl: './filter-menu-component.css',
 })
 export class FilterMenuComponent {
+  private addFormState = inject(AddFormStateService);
+
+  toggleAddForm() {
+    this.addFormState.toggleAddForm();
+  }
+
   categories = input<string[]>([]);
   categorySelected = output<string>();
   

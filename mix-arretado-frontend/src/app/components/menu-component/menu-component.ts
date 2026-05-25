@@ -3,11 +3,12 @@ import { DishService } from '../../services/dish-service';
 import { CommonModule } from '@angular/common';
 import { DishMenuComponent } from '../dish-menu-component/dish-menu-component';
 import { FilterMenuComponent } from '../filter-menu-component/filter-menu-component';
+import { AddDishComponent } from '../add-dish-component/add-dish-component';
 
 @Component({
   selector: 'app-menu-component',
   standalone: true,
-  imports: [CommonModule, DishMenuComponent, FilterMenuComponent],
+  imports: [CommonModule, DishMenuComponent, FilterMenuComponent, AddDishComponent],
   templateUrl: './menu-component.html',
   styleUrl: './menu-component.css',
 })

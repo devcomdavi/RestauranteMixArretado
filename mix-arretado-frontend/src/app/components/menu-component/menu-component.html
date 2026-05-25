@@ -14,7 +14,10 @@
         [categories]="categories()" 
         (categorySelected)="onCategoryChange($event)">
       </app-filter-menu-component>
-  
+
+      <!-- Add Dish Form -->
+      <app-add-dish-component></app-add-dish-component>
+
       <!-- Dishes Grid -->
       <div *ngIf="filteredDishes().length > 0; else noDishes" 
            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-12">
