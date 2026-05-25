@@ -1,7 +1,7 @@
 <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all group border border-orange-50 h-full flex flex-col">
     <div class="relative h-56 overflow-hidden">
-      <img [src]="dish().imageUrl || 'images/rubacao.jpg'" 
-           [alt]="dish().name" 
+      <img [src]="dish().picture !== '/imagens/template_prato.png' ? dish().picture : 'images/template_prato.png'" 
+           [alt]="dish().title" 
            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
       
       <!-- Category Badge -->
@@ -17,7 +17,7 @@
   
     <div class="p-6 flex-grow flex flex-col">
       <h3 class="text-2xl font-bold mb-3 text-nordeste-brown group-hover:text-nordeste-orange transition-colors font-xilosa leading-tight">
-        {{ dish().name }}
+        {{ dish().title }}
       </h3>
       <p class="text-nordeste-brown/80 leading-relaxed text-sm line-clamp-3">
         {{ dish().description }}
