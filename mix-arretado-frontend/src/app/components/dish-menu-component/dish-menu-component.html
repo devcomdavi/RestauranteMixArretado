@@ -1,12 +1,15 @@
 <div (click)="editDish()" class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all group border border-orange-50 h-full flex flex-col relative cursor-pointer">
     
-    <div *ngIf="openEditId() === dish().id" class="absolute inset-0 bg-black/80 backdrop-blur-sm z-50 flex flex-col items-center justify-center p-6 text-center animate-in fade-in zoom-in duration-200">
-        <h4 class="text-white text-xl font-bold font-xilosa mb-4">Tem certeza que deseja excluir esse prato?</h4>
-        <div class="flex gap-4">
-            <button (click)="cancelEdit($event)" class="px-6 py-2 bg-transparent border-2 border-nordeste-orange text-nordeste-orange font-bold rounded-lg hover:bg-nordeste-orange hover:text-white transition-colors cursor-pointer">Cancelar</button>
-            <button (click)="confirmDelete($event)" class="px-6 py-2 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition-colors shadow-md cursor-pointer">Excluir</button>
-        </div>
-    </div>
+    <!-- Modal de Exclusão (Overlay dentro do próprio card) -->
+    @if (openEditId() === dish().id) {
+      <div class="absolute inset-0 bg-black/80 backdrop-blur-sm z-50 flex flex-col items-center justify-center p-6 text-center animate-in fade-in zoom-in duration-200">
+          <h4 class="text-white text-xl font-bold font-xilosa mb-4">Tem certeza que deseja excluir esse prato?</h4>
+          <div class="flex gap-4">
+              <button (click)="cancelEdit($event)" class="px-6 py-2 bg-transparent border-2 border-nordeste-orange text-nordeste-orange font-bold rounded-lg hover:bg-nordeste-orange hover:text-white transition-colors cursor-pointer">Cancelar</button>
+              <button (click)="confirmDelete($event)" class="px-6 py-2 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition-colors shadow-md cursor-pointer">Excluir</button>
+          </div>
+      </div>
+    }
 
     <div class="relative h-56 overflow-hidden">
       <img [src]="dish().picture !== '/imagens/template_prato.png' ? dish().picture : 'images/template_prato.png'" 

@@ -12,30 +12,30 @@
             <h3 class="text-2xl font-bold text-[#FFB300] font-xilosa">Faça sua Reserva</h3>
             <p class="text-[#D7CCC8] text-sm mt-2">Garanta seu lugar no melhor da culinária nordestina.</p>
         </div>
-        <form class="p-6 space-y-4">
+        <form [formGroup]="reservationForm" (ngSubmit)="submitForm()" class="p-6 space-y-4">
             <div>
                 <label class="block text-sm font-bold text-[#3E2723] mb-1">Nome Completo</label>
-                <input required="" class="w-full px-4 py-2 rounded-lg border border-[#D7CCC8] bg-white text-[#3E2723] focus:outline-none focus:ring-2 focus:ring-[#E65100]" placeholder="Seu nome" type="text"></div>
+                <input formControlName="fullName" class="w-full px-4 py-2 rounded-lg border border-[#D7CCC8] bg-white text-[#3E2723] focus:outline-none focus:ring-2 focus:ring-[#E65100]" placeholder="Seu nome" type="text"></div>
                 <div class="grid grid-cols-2 gap-4"><div>
                     <label class="block text-sm font-bold text-[#3E2723] mb-1">Data</label>
-                    <input required="" class="w-full px-4 py-2 rounded-lg border border-[#D7CCC8] bg-white text-[#3E2723] focus:outline-none focus:ring-2 focus:ring-[#E65100]" type="date"></div>
+                    <input formControlName="date" class="w-full px-4 py-2 rounded-lg border border-[#D7CCC8] bg-white text-[#3E2723] focus:outline-none focus:ring-2 focus:ring-[#E65100]" type="date"></div>
                     <div>
                         <label class="block text-sm font-bold text-[#3E2723] mb-1">Horário</label>
-                        <input required="" class="w-full px-4 py-2 rounded-lg border border-[#D7CCC8] bg-white text-[#3E2723] focus:outline-none focus:ring-2 focus:ring-[#E65100]" type="time">
+                        <input formControlName="time" class="w-full px-4 py-2 rounded-lg border border-[#D7CCC8] bg-white text-[#3E2723] focus:outline-none focus:ring-2 focus:ring-[#E65100]" type="time">
                     </div>
                 </div>
                 <div>
                     <label class="block text-sm font-bold text-[#3E2723] mb-1">Número de Pessoas</label>
-                    <select class="w-full px-4 py-2 rounded-lg border border-[#D7CCC8] bg-white text-[#3E2723] focus:outline-none focus:ring-2 focus:ring-[#E65100]">
-                        <option>2 Pessoas</option>
-                        <option>3 a 4 Pessoas</option>
-                        <option>5 a 8 Pessoas</option>
-                        <option>Mais de 8 Pessoas</option>
+                    <select formControlName="numberOfPeople" class="w-full px-4 py-2 rounded-lg border border-[#D7CCC8] bg-white text-[#3E2723] focus:outline-none focus:ring-2 focus:ring-[#E65100]">
+                        <option value="2 Pessoas">2 Pessoas</option>
+                        <option value="3 a 4 Pessoas">3 a 4 Pessoas</option>
+                        <option value="5 a 8 Pessoas">5 a 8 Pessoas</option>
+                        <option value="Mais de 8 Pessoas">Mais de 8 Pessoas</option>
                     </select>
                 </div>
                 <div class="flex gap-3 mt-4">
                     <button (click)="toggleForm()" type="button" class="w-1/3 py-3 bg-transparent border-2 border-[#E65100] text-[#E65100] font-bold rounded-lg hover:bg-[#E65100] hover:text-white transition-colors">Cancelar</button>
-                    <button (click)="toggleForm()" type="submit" class="w-2/3 py-3 bg-[#E65100] text-white font-bold rounded-lg hover:bg-[#D84315] transition-colors shadow-md">Confirmar</button>
+                    <button type="submit" class="w-2/3 py-3 bg-[#E65100] text-white font-bold rounded-lg hover:bg-[#D84315] transition-colors shadow-md">Confirmar</button>
                 </div>
             </form>
         </div>

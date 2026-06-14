@@ -58,23 +58,25 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-      <div *ngFor="let dish of featuredDishes()" class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all group border border-orange-50 h-full flex flex-col relative">
-        <div class="relative h-56 overflow-hidden">
-          <img [src]="dish.picture !== '/imagens/template_prato.png' ? dish.picture : 'images/template_prato.png'" 
-               [alt]="dish.title" 
-               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-          
+      @for (dish of featuredDishes(); track dish.id) {
+        <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all group border border-orange-50 h-full flex flex-col relative">
+          <div class="relative h-56 overflow-hidden">
+            <img [src]="dish.picture !== '/imagens/template_prato.png' ? dish.picture : 'images/template_prato.png'" 
+                 [alt]="dish.title" 
+                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            
+          </div>
+        
+          <div class="p-6 flex-grow flex flex-col">
+            <h3 class="text-2xl font-bold mb-3 text-nordeste-brown group-hover:text-nordeste-orange transition-colors font-xilosa leading-tight">
+              {{ dish.title }}
+            </h3>
+            <p class="text-nordeste-brown/80 leading-relaxed text-sm line-clamp-3">
+              {{ dish.description }}
+            </p>
+          </div>
         </div>
-      
-        <div class="p-6 flex-grow flex flex-col">
-          <h3 class="text-2xl font-bold mb-3 text-nordeste-brown group-hover:text-nordeste-orange transition-colors font-xilosa leading-tight">
-            {{ dish.title }}
-          </h3>
-          <p class="text-nordeste-brown/80 leading-relaxed text-sm line-clamp-3">
-            {{ dish.description }}
-          </p>
-        </div>
-      </div>
+      }
     </div>
 
     <div class="flex justify-center">
@@ -91,15 +93,17 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      <div *ngFor="let t of testimonials" class="bg-white p-8 rounded-3xl shadow-sm border border-orange-50 relative">
-        <div class="text-nordeste-yellow flex gap-1 mb-4 text-lg">
-          {{ getStars(t.stars) }}
+      @for (t of testimonials; track t.author) {
+        <div class="bg-white p-8 rounded-3xl shadow-sm border border-orange-50 relative">
+          <div class="text-nordeste-yellow flex gap-1 mb-4 text-lg">
+            {{ getStars(t.stars) }}
+          </div>
+          <p class="italic text-nordeste-brown mb-6 leading-relaxed">
+            "{{ t.text }}"
+          </p>
+          <div class="font-bold text-nordeste-orange">— {{ t.author }}</div>
         </div>
-        <p class="italic text-nordeste-brown mb-6 leading-relaxed">
-          "{{ t.text }}"
-        </p>
-        <div class="font-bold text-nordeste-orange">— {{ t.author }}</div>
-      </div>
+      }
     </div>
   </section>
 </main>
