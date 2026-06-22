@@ -1,4 +1,7 @@
+.env
+
 HELP.md
+migration_guide.md
 target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
