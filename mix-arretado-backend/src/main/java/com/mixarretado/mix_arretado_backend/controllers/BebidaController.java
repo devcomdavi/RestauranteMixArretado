@@ -28,6 +28,12 @@ public class BebidaController {
         return ResponseEntity.ok(service.save(bebida));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Bebida> update(@PathVariable Long id, @RequestBody Bebida bebida) {
+        bebida.setId(id);
+        return ResponseEntity.ok(service.save(bebida));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
