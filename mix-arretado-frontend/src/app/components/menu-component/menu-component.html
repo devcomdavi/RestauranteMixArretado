@@ -8,13 +8,15 @@
           O melhor do Nordeste preparado com carinho e tradição. Escolha sua categoria favorita e bom apetite!
         </p>
       </div>
-  
+
       <app-filter-menu-component 
         [categories]="categories()" 
         (categorySelected)="onCategoryChange($event)">
       </app-filter-menu-component>
 
-      <app-add-dish-component></app-add-dish-component>
+      @if (isAuthenticated()) {
+        <app-add-dish-component></app-add-dish-component>
+      }
 
       <!-- Dishes Grid -->
       @if (filteredDishes().length > 0) {

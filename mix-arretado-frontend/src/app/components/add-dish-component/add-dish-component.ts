@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, effect } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddFormStateService } from '../../services/add-form-state.service';
 import { DishService } from '../../services/dish-service';
@@ -11,7 +11,7 @@ import { Dish } from '../../models/dish.model';
   styleUrl: './add-dish-component.css',
 })
 export class AddDishComponent {
-  private addFormState = inject(AddFormStateService);
+  public addFormState = inject(AddFormStateService);
   private dishService = inject(DishService);
   private fb = inject(FormBuilder);
   
@@ -26,6 +26,21 @@ export class AddDishComponent {
       selectedCategory: ['tapioca-arretada', [Validators.required]],
       dishPicture: ['']
     });
+
+    effect(() => {
+      const editingDish = this.addFormState.editingDish();
+      if (editingDish) {
+        this.dishForm.patchValue({
+          dishName: editingDish.title,
+          dishDescription: editingDish.description,
+          dishPrice: editingDish.price,
+          selectedCategory: editingDish.category,
+          dishPicture: editingDish.picture !== '/imagens/template_prato.png' && editingDish.picture !== 'images/template_prato.png' ? editingDish.picture : ''
+        });
+      } else {
+        this.dishForm.reset({ selectedCategory: 'tapioca-arretada' });
+      }
+    });
   }
 
   toggleAddForm() {
@@ -38,15 +53,22 @@ export class AddDishComponent {
       const precoString = String(formValue.dishPrice).replace(',', '.');
       const precoFormatado = parseFloat(precoString);
 
+      const editingDish = this.addFormState.editingDish();
+
       const postDish: Dish = {
         title: formValue.dishName,
         description: formValue.dishDescription,
-        picture: formValue.dishPicture,
+        picture: formValue.dishPicture || 'images/template_prato.png',
         price: precoFormatado,
         category: formValue.selectedCategory
       };
       
-      this.dishService.create(postDish);
+      if (editingDish && editingDish.id !== undefined) {
+        this.dishService.update(editingDish.id, postDish);
+      } else {
+        this.dishService.create(postDish);
+      }
+      
       this.dishForm.reset({ selectedCategory: 'tapioca-arretada' });
       this.toggleAddForm();
     } else {
