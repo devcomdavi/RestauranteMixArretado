@@ -23,6 +23,9 @@ public class Bebida {
     private Double preco;
     
     private String volume;
+
+    @Column(columnDefinition = "TEXT")
+    private String picture;
     
     @ManyToOne
     @JoinColumn(name = "categoria_id")
