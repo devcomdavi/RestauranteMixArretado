@@ -28,6 +28,12 @@ public class PratoController {
         return ResponseEntity.ok(service.save(prato));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Prato> update(@PathVariable Long id, @RequestBody Prato prato) {
+        prato.setId(id);
+        return ResponseEntity.ok(service.save(prato));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
