@@ -21,6 +21,9 @@ public class Prato {
     
     @Column(nullable = false)
     private Double preco;
+
+    @Column(columnDefinition = "TEXT")
+    private String picture;
     
     @ManyToOne
     @JoinColumn(name = "categoria_id")
