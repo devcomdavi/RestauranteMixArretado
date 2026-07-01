@@ -58,7 +58,7 @@ export class AddDishComponent {
       const postDish: Dish = {
         title: formValue.dishName,
         description: formValue.dishDescription,
-        picture: formValue.dishPicture || 'images/template_prato.png',
+        picture: formValue.dishPicture ? formValue.dishPicture : (editingDish?.picture || 'images/template_prato.png'),
         price: precoFormatado,
         category: formValue.selectedCategory
       };

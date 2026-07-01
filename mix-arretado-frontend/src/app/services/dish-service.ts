@@ -10,6 +10,24 @@ import { Dish } from '../models/dish.model';
 export class DishService {
   private api = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/api/pratos';
+  
+  private categoryMap: { [key: string]: number } = {
+    'tapioca-arretada': 27,
+    'jantar': 24,
+    'cuscuz': 26,
+    'tapioquinha': 19,
+    'sanduiches': 20,
+    'sanduiches-especiais': 23,
+    'pasteis-salgados': 28,
+    'pasteis-doces': 25,
+    'sobremesas': 18,
+    'adicionais': 22,
+    'sucos': 21,
+    'bebidas': 17,
+    'Pratos Principais': 1,
+    'Bebidas': 2,
+    'Sobremesas': 3
+  };
 
   private _dishes = signal<Dish[] | null>([]);
 
@@ -37,7 +55,8 @@ export class DishService {
           description: p.descricao,
           price: p.preco,
           category: p.categoria?.nome || 'Geral',
-          picture: p.picture || 'images/template_prato.png'
+          picture: p.picture || 'images/template_prato.png',
+          type: 'prato'
         }));
 
         const mappedBebidas: Dish[] = bebidas.map(b => ({
@@ -49,7 +68,8 @@ export class DishService {
           description: b.descricao || b.volume || '',
           price: b.preco,
           category: b.categoria?.nome || 'Bebidas',
-          picture: b.picture || 'images/template_prato.png'
+          picture: b.picture || 'images/template_prato.png',
+          type: 'bebida'
         }));
 
         this._dishes.set([...mappedPratos, ...mappedBebidas]);
@@ -65,11 +85,8 @@ export class DishService {
       nome: newDish.title,
       descricao: newDish.description,
       preco: newDish.price,
-      // Se a categoria for string, o backend talvez precise procurar a categoria pelo nome ou precisaremos enviar o ID
-      // Como o backend Spring Boot mapeou Categoria como um objeto @ManyToOne, ele espera algo como: categoria: { id: 1, nome: '...' }
-      // Vamos assumir que a categoria ID 1 é Pratos Principais por enquanto, ou buscaríamos as categorias reais.
-      // Para manter simples sem refatorar o frontend inteiro agora, vamos criar um payload compatível
-      categoria: { id: 1 } // Ajuste necessário futuramente para buscar IDs reais
+      picture: newDish.picture,
+      categoria: { id: this.categoryMap[newDish.category || ''] || 1 }
     };
 
     this.api.post<any>(this.apiUrl, pratoPayload).subscribe({
@@ -80,14 +97,19 @@ export class DishService {
   }
 
   public update(id: number, updatedDish: Dish) {
-    const pratoPayload = {
+    const payload = {
       nome: updatedDish.title,
       descricao: updatedDish.description,
       preco: updatedDish.price,
-      categoria: { id: 1 } // Idem
+      picture: updatedDish.picture,
+      categoria: { id: this.categoryMap[updatedDish.category || ''] || 1 }
     };
 
-    this.api.put<any>(`${this.apiUrl}/${id}`, pratoPayload).subscribe({
+    const url = updatedDish.type === 'bebida' 
+      ? `http://localhost:8080/api/bebidas/${id}` 
+      : `${this.apiUrl}/${id}`;
+
+    this.api.put<any>(url, payload).subscribe({
       next: (response) => {
         this.load();
       }
@@ -95,11 +117,19 @@ export class DishService {
   }
 
   public removeById(id: number) {
+    const dishToDelete = this._dishes()?.find(elem => elem.id === id);
+    if (!dishToDelete) return;
+
     // Remove localmente primeiro para ser otimista
     const filteredDishes = this._dishes()?.filter(elem => elem.id !== id);
     this._dishes.set(filteredDishes ?? null);
 
-    this.api.delete(`${this.apiUrl}/${id}`).subscribe({
+    const url = dishToDelete.type === 'bebida' 
+      ? `http://localhost:8080/api/bebidas/${id}` 
+      : `${this.apiUrl}/${id}`;
+
+    this.api.delete(url).subscribe({
+      next: () => console.log('Deleted successfully'),
       error: () => this.load() // Se falhar, recarrega a lista real
     });
   }
