@@ -1,50 +1,62 @@
-<div class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
-  <div class="max-w-md w-full space-y-8 bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
-    <div>
-      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
+<div class="min-h-screen flex items-center justify-center bg-nordeste-bg py-12 px-4 sm:px-6 lg:px-8 font-titillium text-nordeste-brown">
+  <div class="max-w-md w-full bg-white p-10 rounded-3xl shadow-xl border border-orange-100/50 flex flex-col relative overflow-hidden">
+    <!-- Decorative Sun Icon -->
+    <div class="flex justify-center mb-6">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun w-12 h-12 text-nordeste-yellow" aria-hidden="true">
+        <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 2v2"></path>
+        <path d="M12 20v2"></path>
+        <path d="m4.93 4.93 1.41 1.41"></path>
+        <path d="m17.66 17.66 1.41 1.41"></path>
+        <path d="M2 12h2"></path>
+        <path d="M20 12h2"></path>
+        <path d="m6.34 17.66-1.41 1.41"></path>
+        <path d="m19.07 4.93-1.41 1.41"></path>
+      </svg>
+    </div>
+
+    <div class="text-center">
+      <h2 class="text-4xl font-xilosa text-nordeste-brown mb-2 leading-tight">
         Acesso Colaborador
       </h2>
-      <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+      <p class="text-nordeste-orange font-medium italic text-sm mb-8">
         Gerencie o cardápio do Mix Arretado
       </p>
     </div>
     
-    <div *ngIf="errorMessage" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-      <span class="block sm:inline">{{ errorMessage }}</span>
+    <div *ngIf="errorMessage" class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-2xl mb-6 text-sm relative" role="alert">
+      <span class="block text-center font-medium">{{ errorMessage }}</span>
     </div>
 
-    <form class="mt-8 space-y-6" (ngSubmit)="onSubmit()" #loginForm="ngForm">
-      <input type="hidden" name="remember" value="true">
-      <div class="rounded-md shadow-sm -space-y-px">
+    <form class="space-y-6" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <div class="space-y-4">
         <div>
-          <label for="email-address" class="sr-only">E-mail</label>
+          <label for="email-address" class="block text-sm font-bold text-nordeste-brown mb-1 ml-2">E-mail</label>
           <input id="email-address" name="email" type="email" autocomplete="email" required [(ngModel)]="email"
-            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 text-gray-900 dark:text-white dark:bg-gray-700 rounded-t-md focus:outline-none focus:ring-amber-500 focus:border-amber-500 focus:z-10 sm:text-sm"
-            placeholder="E-mail">
+            class="w-full px-5 py-3 rounded-full border border-orange-200 focus:outline-none focus:ring-2 focus:ring-nordeste-orange focus:border-nordeste-orange bg-nordeste-bg/30 text-nordeste-brown placeholder-nordeste-brown/40 transition-all text-sm"
+            placeholder="exemplo@email.com">
         </div>
         <div>
-          <label for="password" class="sr-only">Senha</label>
+          <label for="password" class="block text-sm font-bold text-nordeste-brown mb-1 ml-2">Senha</label>
           <input id="password" name="password" type="password" autocomplete="current-password" required [(ngModel)]="password"
-            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 text-gray-900 dark:text-white dark:bg-gray-700 rounded-b-md focus:outline-none focus:ring-amber-500 focus:border-amber-500 focus:z-10 sm:text-sm"
-            placeholder="Senha">
+            class="w-full px-5 py-3 rounded-full border border-orange-200 focus:outline-none focus:ring-2 focus:ring-nordeste-orange focus:border-nordeste-orange bg-nordeste-bg/30 text-nordeste-brown placeholder-nordeste-brown/40 transition-all text-sm"
+            placeholder="Sua senha secreta">
         </div>
       </div>
 
       <div>
         <button type="submit" [disabled]="isLoading"
-          class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 disabled:opacity-50 transition-colors">
-          <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-            <svg class="h-5 w-5 text-amber-500 group-hover:text-amber-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
-            </svg>
-          </span>
+          class="w-full cursor-pointer px-8 py-3.5 bg-nordeste-orange text-white font-bold rounded-full hover:bg-orange-600 transition-all shadow-lg shadow-orange-950/10 hover:shadow-orange-950/20 active:scale-[0.98] disabled:opacity-50 flex justify-center items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
           {{ isLoading ? 'Entrando...' : 'Entrar' }}
         </button>
       </div>
     </form>
     
-    <div class="text-center mt-4">
-      <a routerLink="/" class="text-sm text-amber-600 hover:text-amber-500">Voltar para o site</a>
+    <div class="text-center mt-6 border-t border-orange-100/60 pt-6">
+      <a routerLink="/" class="text-sm font-bold text-nordeste-orange hover:text-orange-600 transition-colors inline-flex items-center gap-1">
+        ← Voltar para o site
+      </a>
     </div>
   </div>
 </div>
