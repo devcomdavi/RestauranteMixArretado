@@ -1,6 +1,7 @@
 import { Component, input, output, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddFormStateService } from '../../services/add-form-state.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-filter-menu-component',
@@ -11,6 +12,7 @@ import { AddFormStateService } from '../../services/add-form-state.service';
 })
 export class FilterMenuComponent {
   private addFormState = inject(AddFormStateService);
+  public authService = inject(AuthService);
 
   toggleAddForm() {
     this.addFormState.toggleAddForm();
@@ -18,7 +20,7 @@ export class FilterMenuComponent {
 
   categories = input<string[]>([]);
   categorySelected = output<string>();
-  
+
   activeCategory = signal<string>('Todos');
 
   selectCategory(category: string) {

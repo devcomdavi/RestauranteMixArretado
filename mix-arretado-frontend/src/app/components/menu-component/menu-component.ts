@@ -1,5 +1,6 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal, OnInit } from '@angular/core';
 import { DishService } from '../../services/dish-service';
+import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { DishMenuComponent } from '../dish-menu-component/dish-menu-component';
 import { FilterMenuComponent } from '../filter-menu-component/filter-menu-component';
@@ -12,9 +13,18 @@ import { AddDishComponent } from '../add-dish-component/add-dish-component';
   templateUrl: './menu-component.html',
   styleUrl: './menu-component.css',
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit {
   private dishService = inject(DishService);
-  
+  private authService = inject(AuthService);
+
+  isAuthenticated = signal<boolean>(false);
+
+  ngOnInit() {
+    this.authService.currentUser$.subscribe(user => {
+      this.isAuthenticated.set(!!user);
+    });
+  }
+
   selectedCategory = signal<string>('Todos');
 
   dishes = this.dishService.dishes;
@@ -30,11 +40,11 @@ export class MenuComponent {
   filteredDishes = computed(() => {
     const allDishes = this.dishes() || [];
     const category = this.selectedCategory();
-    
+
     if (category === 'Todos') {
       return allDishes;
     }
-    
+
     return allDishes.filter(d => d.category === category);
   });
 

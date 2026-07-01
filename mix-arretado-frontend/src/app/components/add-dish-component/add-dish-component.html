@@ -10,7 +10,9 @@
             </svg>
         </button>
         <div class="bg-[#3E2723] p-6 text-center">
-            <h3 class="text-2xl font-bold text-[#FFB300] font-xilosa">Adicionar Prato Novo</h3>
+            <h3 class="text-2xl font-bold text-[#FFB300] font-xilosa">
+                {{ addFormState.editingDish() ? 'Editar Prato' : 'Adicionar Prato Novo' }}
+            </h3>
         </div>
         <form [formGroup]="dishForm" (ngSubmit)="triggerAddButton()" class="p-6 space-y-4">
             <div>
@@ -48,7 +50,9 @@
             </div>
             <div class="flex gap-3 mt-4">
                 <button (click)="toggleAddForm()" type="button" class="w-1/3 py-3 bg-transparent border-2 border-[#E65100] text-[#E65100] font-bold rounded-lg hover:bg-[#E65100] hover:text-white transition-colors">Cancelar</button>
-                <button type="submit" class="w-2/3 py-3 bg-[#E65100] text-white font-bold rounded-lg hover:bg-[#D84315] transition-colors shadow-md">Adicionar</button>
+                <button type="submit" class="w-2/3 py-3 bg-[#E65100] text-white font-bold rounded-lg hover:bg-[#D84315] transition-colors shadow-md">
+                    {{ addFormState.editingDish() ? 'Salvar Alterações' : 'Adicionar' }}
+                </button>
             </div>
         </form>
     </div>
